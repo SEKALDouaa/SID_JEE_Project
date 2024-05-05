@@ -16,7 +16,7 @@ import com.jee.DAO.MySQLDataSource;
 
 public class RegisterServlet extends HttpServlet{
 	
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) {
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) {
 		try {
 			System.out.println("Execution d'un service");
 			String name=req.getParameter("name");
@@ -29,15 +29,19 @@ public class RegisterServlet extends HttpServlet{
 			
 			DataBase db=new DataBase(new MySQLDataSource("servlet"));
 			
-			RequestDispatcher dispatcher=req.getRequestDispatcher("index.jsp");
+			RequestDispatcher dispatcher=null;
+			
+			HttpSession session = req.getSession();
 			
 			int insert=db.insertElement(new User(name,email,pwd));
 			
 			if(insert>0) {
-				req.setAttribute("success", "You have been registered successfully!");
+				session.setAttribute("success", "You have been registered successfully!");
+				dispatcher=req.getRequestDispatcher("index.jsp");
 			}
 			else {
 				req.setAttribute("failed", "An error has occured");
+				dispatcher=req.getRequestDispatcher("index.jsp");
 			}
 
 			dispatcher.forward(req, resp);
@@ -47,7 +51,7 @@ public class RegisterServlet extends HttpServlet{
 		
 	}
 	
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		doGet(req, resp);
+	protected void doGett(HttpServletRequest req, HttpServletResponse resp) {
+		doPost(req,resp);
 	}
 }

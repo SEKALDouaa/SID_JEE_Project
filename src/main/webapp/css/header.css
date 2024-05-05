@@ -170,6 +170,19 @@ html::-webkit-scrollbar-thumb{
     padding-top: 6px;
 }
 
+.btn{
+    margin-top: 1rem;
+    display: inline-block;
+    padding: .9rem 3rem;
+    border-radius:.5rem;
+    color:#fff;
+    background: var(--red);
+    font-size: 1.7rem;
+    cursor: pointer;
+}
+.btn:hover{
+    background: var(--dark-color);
+}
 @media(max-width:768px){
     html{
         scroll-padding-top: 0;
@@ -204,4 +217,13 @@ html::-webkit-scrollbar-thumb{
         font-size:50%;
     }
    
+}
+
+@media(max-width:991px){
+    html{
+        font-size: 55%;
+    }
+    .header .header-1{
+        padding: 2rem;
+    }
 }

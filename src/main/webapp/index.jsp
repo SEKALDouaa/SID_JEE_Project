@@ -40,10 +40,17 @@
             </div>
             
         </header>
-        
+        <c:if test="${not empty sessionScope.success}">
+	        <p style="color:green;">${sessionScope.success}</p>
+	        <c:remove var="success" scope="session"/>
+	    </c:if>
+	    <c:if test="${not empty sessionScope.failed}">
+	        <p style="color:red;">${sessionScope.failed}</p>
+	        <c:remove var="failed" scope="session"/>
+	    </c:if>
         <div class="container" id="container">
             <div class="form-container sign-up-container">
-                <form action="register">
+                <form action="register.do" method="post">
                     <h1>Create Account</h1>
                     
                     <div class="social-container">
@@ -65,7 +72,7 @@
                 </form>
             </div>
             <div class="form-container sign-in-container">
-                <form action="login" method="post">
+                <form action="login.do" method="post">
                     <h1>Sign in</h1>
                     <c:if test="${not empty sessionScope.error}">
 				        <p style="color:red;">${sessionScope.error}</p>
